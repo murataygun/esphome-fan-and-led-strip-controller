@@ -1,4 +1,4 @@
-# ESPHome Fan ve Şerit Led Kontrollü
+# ESPHome Fan ve Şerit Led Kontrolü
 
 Bu proje ile benim gibi kapalı alanda birden fazla bilgisayarı veya oyun konsolu gibi cihazlarınızı sessiz ve termostat kontrollü bir fanla nasıl havalandırcağınızla birlikte kabininiz veya odanızda hoş bir aydınlatmayı nasıl yapacağınızı açıklaycağım.
 
@@ -6,7 +6,7 @@ Yazılım olarak ESPHome ve Home Assistant dan yararlanacağız. Donanım olarak
 
 ## Motivasyon
 
-Akıllı ev projelerine başladıktan sonra eski cihazım olan MSI GE60 2OE üzerine Home Assistant kurulumu yaptım. Genel olarak evden çalıştığım için çalışma odamda şirket bilgisayarı ve özel işlerim içinde bir tane MacBook Pro cihazım sürekli olarak çalışıyor. Ancak ddamın küçük olması ve bu cihazların çalışma masamın üzerinde durmasından hoşlanmadığım için yüksek bir dolapta sürekli olarak hazır bir şekilde bekletiyordum. 
+Akıllı ev projelerine başladıktan sonra eski cihazım olan MSI GE60 2OE üzerine Home Assistant kurulumu yaptım. Genel olarak evden çalıştığım için çalışma odamda şirket bilgisayarı ve özel işlerim içinde bir tane MacBook Pro cihazım sürekli olarak çalışıyor. Ancak odamın küçük olması ve bu cihazların çalışma masamın üzerinde durmasından hoşlanmadığım için yüksek bir dolapta sürekli olarak hazır bir şekilde bekletiyordum. 
 
 Ancak aynı dolap içerisinde 3 bilgisayar birden sürekli olarak çalıştığında ve bir hava sirkülasyonu olmadığında iç sıcaklar 40 - 45 C lere kadar çıkıyor cihaz iç sıcaklıkları da artık çalışacamayacak hatta cihazlara zarar verecek noktaya geliyordu. Bu yüzden beni rahatsız etmeyecek ancak cihazlarıda sağlıklı olarak çalışmasını sağlayacak bir çözüm için arayışa başladım. Proje bu aşamaya gelene kadar bir çok deneme yanılma yaptım ancak benim için en uygun bu son hali oldu.
 
@@ -17,13 +17,13 @@ Ancak aynı dolap içerisinde 3 bilgisayar birden sürekli olarak çalıştığ�
 Ana özellikler:
 
 - Sıcaklık sensörüne göre dinamik olarak hızı ayarlanan bir fan 
-- **Ayarlanabilir hız kontolleri**. Fan çalışma başlangıç sıcaklıkğı, min. çalışma hızı ve maximum çalışma sıcaklığı ayarları yapılabilir durumdadır.
-- Kontrol ve raporlama amacıyla Home Assistant'a bağlanmak için ESP32'nin Wifi'sini kullanır
-- ESP32 bağımsızdır ve bu nedenle soğutma işlevi Wifi olmadan çalışmaya devam edecektir. Çalıştırmak için HomeAssistant'a veya Wifi'ye ihtiyaç duymaz. Wifi yalnızca kurulum, manuel kontrol ve raporlama için gereklidir.
+- **Ayarlanabilir hız kontrolleri**. Fan çalışma başlangıç sıcaklığı, min. çalışma hızı ve maximum çalışma sıcaklığı ayarları yapılabilir durumdadır.
+- Kontrol ve raporlama amacıyla Home Assistant'a bağlanmak için ESP8266'nin Wifi'sini kullanır
+- ESP8266 bağımsızdır ve bu nedenle soğutma işlevi Wifi olmadan çalışmaya devam edecektir. Çalıştırmak için HomeAssistant'a veya Wifi'ye ihtiyaç duymaz. Wifi yalnızca kurulum, manuel kontrol ve raporlama için gereklidir.
 - Cihazın kendisinde ekrana gerek yoktur, tüm yönetim Ev Asistanı üzerinden yapılır
-- Sistem şuan için tek fan kullanıyor. Ancak yaz aylarında veya başka koşullarda yeterli olmaz ise fan sayısı çoğaltılabilir.
+- Sistem şu an için tek fan kullanıyor. Ancak yaz aylarında veya başka koşullarda yeterli olmaz ise fan sayısı çoğaltılabilir.
 - **Kodlama ihtiyacı yoktur.** Aslında tüm işi yapan repo içerisinde bulunan yaml dosyasıdır.
-- **Direnç, kapasitör veya zor lehimlemeye gerek yoktur.** Fan ve sıcaklık sensörü doğrudan ESP32'nin pinlerine takılır.
+- **Direnç, kapasitör veya zor lehimlemeye gerek yoktur.** Fan ve sıcaklık sensörü doğrudan ESP8266'nin pinlerine takılır.
 - Sistem asıl işi haricinde çalışma alanınıza veya odanıza çok hoş bir ambiyans aydınlatma da katacaktır.
 
 ![demo1.png](image%2Fdemo1.png)
@@ -44,11 +44,11 @@ Bu Home Assistant'tan bir ekran görüntüsü. Bu kontrol panelini nasıl kuraca
 
 - **12v Güç adaptörü** - Ben şerit ledleride kullandığım için, min. 5A bir güç kaynağı kullandım. [CATA CT 2674 5 AMPER 60W](https://amzn.eu/d/9yCUfTn)  Maliyet 85₺ (3$)  Eğer sadece fan için bir sistem yapacaksanız fanlarınıza bağlı olarak 1A veya 2A yeterli olacaktır.<br><img src="image/12v-adaptor.jpg" width="100">
 
-- **[ESP8266](https://www.robotistan.com/nodemcu-lolin-esp8266-gelistirme-karti-usb-chip-ch340)**. Herhangi bir ESP yi kullanabilirsiniz. ESP32,D1 Mini vs. ESP8266 Maliyeti 130₺ (4,55$)<br><img src="image/esp8266.webp" width="100">
+- **[ESP8266](https://www.robotistan.com/nodemcu-lolin-esp8266-gelistirme-karti-usb-chip-ch340)**. Herhangi bir ESP yi kullanabilirsiniz. ESP32,D1 Mini vs. ESP8266 Maliyeti 130₺ (4,55$)<br><img src="image/esp8266.png" width="100">
 
-- **[2 Kanal 5 V Röle Kartı](https://www.robotistan.com/2-way-5v-relay-module-2li-5v-role-karti-1)** 2 Farklı şerit led çalıştıracağım için 2 kanallı kullandım. Siz ihtiyacınıza göre değiştirebilirsiniz. Maliyet 40₺ (1,4$)<br><img src="image/5v-relay.webp" width="100">
+- **[2 Kanal 5 V Röle Kartı](https://www.robotistan.com/2-way-5v-relay-module-2li-5v-role-karti-1)** 2 Farklı şerit led çalıştıracağım için 2 kanallı kullandım. Siz ihtiyacınıza göre değiştirebilirsiniz. Maliyet 40₺ (1,4$)<br><img src="image/5v-relay.png" width="100">
 
-- **[Şerit Led](https://www.hepsiburada.com/cata-10-cipli-serit-led-isik-aydinlatma-beyaz-isik-5-m-ic-mekan-pm-HB000019B7XD)** Ben 5m aldım ve ihtiyacıma göre 2 parça olarak kullandım. Farklı renk veya ürün kullancabilirsiniz. Şerit led uzunluk ve türünüze göre güç adaptörünüzü değiştirmeniz gerekebilir. Maliyet 70₺ (2,45 $)<br><img src="image/led-strip.jpg" width="100">
+- **[Şerit Led](https://www.hepsiburada.com/cata-10-cipli-serit-led-isik-aydinlatma-beyaz-isik-5-m-ic-mekan-pm-HB000019B7XD)** Ben 5m aldım ve ihtiyacıma göre 2 parça olarak kullandım. Farklı renk veya ürün kullanabilirsiniz. Şerit led uzunluk ve türünüze göre güç adaptörünüzü değiştirmeniz gerekebilir. Maliyet 70₺ (2,45 $)<br><img src="image/led-strip.jpg" width="100">
 
 ## Bağlantı şeması
 ![schema.jpeg](image%2Fschema.jpeg)
@@ -145,7 +145,7 @@ Secrets.yaml'de wifi kimlik bilgilerinizi düzenleyin. .gitignore, wifi kimlik b
 
 Çoğu kişi gibi bende Home Assistant içinde çalışan ESPHome'u kullanıyorum. Bunu da kullanabilirsiniz.
 
-### Install to ESP32
+### ESP8266'ya Yükleyin
 
 ESP8266'nizi USB aracılığıyla bilgisayarınıza bağlayın, ardından Firmware'i ESP8266'ye yükleyin.
 
@@ -285,7 +285,7 @@ cards:
 - ``number.fan_control_fan_100_temp`` Fanın hangi sıcaklıkta %100 çalışacağını ayarlarız.
 - ``number.fan_control_min_fan_speed`` Fanın min. çalışma değerini ayarlarız.
 
-** Başlangıçda default değerleri yaml içerisinde düzeltebilirsiniz.
+** Başlangıçta default değerleri yaml içerisinde düzeltebilirsiniz.
 
 ### Faydalı Ayrıntılar - Daha Fazla Sensör ve Anahtar
 
