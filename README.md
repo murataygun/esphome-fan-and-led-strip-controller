@@ -26,7 +26,7 @@ Ana özellikler:
 - **Direnç, kapasitör veya zor lehimlemeye gerek yoktur.** Fan ve sıcaklık sensörü doğrudan ESP32'nin pinlerine takılır.
 - Sistem asıl işi haricinde çalışma alanınıza veya odanıza çok hoş bir ambiyans aydınlatma da katacaktır.
 
-![demo.png](image%2Fdemo.png)
+![demo1.png](image%2Fdemo1.png)
 
 Bu Home Assistant'tan bir ekran görüntüsü. Bu kontrol panelini nasıl kuracağınızı size göstereceğim.
 
@@ -191,7 +191,7 @@ Ayrıca kontrol panelini de ayarlamanız gerekir. Bu iki adımı aşağıda aç�
 
 ## Home Assistant Kontrol Panelini Ayarlama
 
-![demo.png](image%2Fdemo1.png)
+![demo1.png](image%2Fdemo1.png)
 
 İşte Home Assistant da tam kontrol panelim.
 
